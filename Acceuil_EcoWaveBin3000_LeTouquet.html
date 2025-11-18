@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>État de la Poubelle Connectée</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background-color: #f4f4f4;
+    }
+
+    /* Image de fond centrée et réduite avec faible opacité */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      transform: translate(-50%, -50%);
+      background-image: url('seabin.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.12;
+      z-index: -1;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 2;
+    }
+
+    .logo img {
+      width: 80px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .ville {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.2em;
+      color: #00796b;
+      font-weight: bold;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 8px 12px;
+      border-radius: 8px;
+      z-index: 2;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding-top: 80px;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    .status {
+      font-size: 2em;
+      margin-top: 20px;
+      padding: 20px 30px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .full {
+      background-color: #ff4d4d;
+      color: white;
+    }
+
+    .empty {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .error {
+      background-color: #999;
+      color: white;
+    }
+
+    .back-button {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo Seabin -->
+  <a href="commerce_EcoWaveBin_LeTouquet.html" class="logo">
+    <img src="seabin.png" alt="Retour à la page commerce">
+  </a>
+
+  <!-- Ville affichée -->
+  <div class="ville">📍 Le Touquet</div>
+
+  <div class="container">
+    <h1>🗑️ État de la Poubelle Connectée</h1>
+    <p>Ce système vous informe en temps réel si la poubelle est pleine ou vide grâce à un capteur intelligent.</p>
+    <div id="status" class="status">Chargement des données...</div>
+
+    <!-- Bouton retour -->
+    <br>
+    <a href="Acceuil_EcoWaveBin3000.html" class="back-button">← Retour à l’accueil</a>
+  </div>
+
+  <script>
+    async function checkTrashStatus() {
+      try {
+        const response = await fetch('http://192.168.1.100/status');
+        const data = await response.json();
+
+        const statusDiv = document.getElementById('status');
+        if (data.isFull === true) {
+          statusDiv.textContent = "La poubelle est pleine ❌";
+          statusDiv.className = "status full";
+        } else if (data.isFull === false) {
+          statusDiv.textContent = "La poubelle est vide ✅";
+          statusDiv.className = "status empty";
+        } else {
+          statusDiv.textContent =

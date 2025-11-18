@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter une nouvelle EcoWaveBin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    form {
+      display: inline-block;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input[type="text"] {
+      width: 300px;
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    input[type="submit"] {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #004d40;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 30px;
+      font-size: 1em;
+      color: #00796b;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>➕ Ajouter une nouvelle EcoWaveBin</h1>
+  <p>Entrez le nom de la localisation pour créer une nouvelle poubelle connectée</p>
+
+  <form action="Acceuil_EcoWaveBin3000.html" method="get">
+    <input type="text" name="localisation" placeholder="Ex : Lille, Bordeaux, Lyon..." required>
+    <br>
+    <input type="submit" value="Ajouter">
+  </form>
+
+  <a href="Acceuil_EcoWaveBin3000.html" class="back-link">← Retour à l’accueil</a>
+
+</body>
+</html>
